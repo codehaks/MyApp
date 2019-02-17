@@ -11,9 +11,11 @@ namespace MyApp
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<AppDbContext>
+                (options => options.UseSqlite("Data Source=app.sqlite"));
+
             services.AddMvc();
-            services.AddDbContext<AppDbContext>(options =>
-               options.UseSqlite("Data Source=app.db"));
+
         }
 
 
