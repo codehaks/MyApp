@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using MyApp.Data;
 
 namespace MyApp
@@ -14,19 +15,26 @@ namespace MyApp
             services.AddDbContext<AppDbContext>
                 (options => options.UseSqlite("Data Source=app.sqlite"));
 
-            services.AddMvc();
+            services.AddRazorPages()
+                .AddRazorRuntimeCompilation();
 
         }
 
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
             app.UseStaticFiles();
-            app.UseMvcWithDefaultRoute();
+            app.UseRouting();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapRazorPages();
+
+            });
         }
     }
 }
