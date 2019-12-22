@@ -15,6 +15,8 @@ namespace MyApp
             services.AddDbContext<AppDbContext>
                 (options => options.UseSqlite("Data Source=app.sqlite"));
 
+            services.AddControllers();
+
             services.AddRazorPages()
                 .AddRazorRuntimeCompilation();
 
@@ -32,6 +34,7 @@ namespace MyApp
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllers();
                 endpoints.MapRazorPages();
 
             });
