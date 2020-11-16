@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MyApp.Models;
 
 namespace MyApp.Data
 {
@@ -8,8 +9,12 @@ namespace MyApp.Data
             : base(options)
         {
         }
+        public DbSet<User> Users { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<User>().Property(u => u.Age)
+                .HasComputedColumnSql("DATEDIFF(YEAR,Birthdate,GETDATE())");
             base.OnModelCreating(builder);
         }
     }
