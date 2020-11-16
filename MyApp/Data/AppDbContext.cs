@@ -13,6 +13,8 @@ namespace MyApp.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<User>().Property(u => u.Age)
+                .HasComputedColumnSql("DATEDIFF(Year,Birthdate,GETDATE())");
             base.OnModelCreating(builder);
         }
     }
