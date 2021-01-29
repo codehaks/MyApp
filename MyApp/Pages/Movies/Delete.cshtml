@@ -1,0 +1,21 @@
+﻿@page
+@model MyApp.Pages.Movies.DeleteModel
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+<hr />
+
+<form method="post">
+    <input hidden asp-for="Movie.Id" />
+
+    <input asp-for="Movie.Name" placeholder="Name" class="form-control" readonly />
+    <br>
+    <input asp-for="Movie.Year" placeholder="Name" class="form-control" readonly />
+    <br>
+    <button type="submit" class="btn btn-outline-danger w-50">Delete</button>
+    <a asp-page="index" class="btn btn-link">Back to list</a>
+
+</form>
+

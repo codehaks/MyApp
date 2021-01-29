@@ -1,0 +1,38 @@
+﻿@page
+@model MyApp.Pages.Movies.IndexModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Movie List</h1>
+<hr />
+
+<a class="btn btn-outline-primary m-2" asp-page="Create">Create New</a>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Year</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var movie in Model.MovieList)
+        {
+            <tr>
+                <td>@movie.Id</td>
+                <td>@movie.Name</td>
+                <td>@movie.Year</td>
+                <td>
+                    <a class="btn btn-outline-secondary" asp-page="edit" asp-route-id="@movie.Id">Edit</a>
+                    <a class="btn btn-outline-danger" asp-page="delete" asp-route-id="@movie.Id">Delete</a>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+
