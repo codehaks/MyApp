@@ -11,8 +11,12 @@ public class IndexModel : PageModel
         _logger = logger;
     }
 
-    public void OnGet()
+    public async Task<IActionResult> OnGet()
     {
+        var time = new Random().Next(1, 3);
+        _logger.LogInformation("Req delay : {Time}", time);
+        await Task.Delay(TimeSpan.FromSeconds(time));
+        return Page();
 
     }
 }
